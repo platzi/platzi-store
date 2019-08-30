@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { MyValidators } from './../../../utils/validators';
 
 import { ProductsService } from './../../../core/services/products/products.service';
@@ -13,19 +14,19 @@ import { ProductsService } from './../../../core/services/products/products.serv
 export class ProductEditComponent implements OnInit {
 
   form: FormGroup;
-  id: string;
+  id: string,
 
   constructor(
     private formBuilder: FormBuilder,
     private productsService: ProductsService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
     this.buildForm();
   }
 
   ngOnInit() {
-    this.activeRoute.params.subscribe((params: Params) => {
+    this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
       this.productsService.getProduct(this.id)
       .subscribe(product => {
@@ -48,6 +49,7 @@ export class ProductEditComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
+      id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       price: ['', [Validators.required, MyValidators.isPriceValid]],
       image: [''],
