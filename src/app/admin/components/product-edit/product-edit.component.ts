@@ -14,7 +14,7 @@ import { ProductsService } from './../../../core/services/products/products.serv
 export class ProductEditComponent implements OnInit {
 
   form: FormGroup;
-  id: string,
+  id: string;
 
   constructor(
     private formBuilder: FormBuilder,
