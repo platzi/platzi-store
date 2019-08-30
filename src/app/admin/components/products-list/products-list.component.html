@@ -15,7 +15,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let product"> 
-      <button mat-button>Editar</button>
+      <a mat-raised-button [routerLink]="['edit', product.id]">Editar</a>
       <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">Eliminar</button>
     </td>
   </ng-container>
